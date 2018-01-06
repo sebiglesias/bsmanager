@@ -1,12 +1,12 @@
 package com.bsmanager.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
+
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -26,8 +26,70 @@ public class User {
     @GeneratedValue(generator = "usersSequenceGenerator")
     private long id;
     private String name;
-    private int age;
+    private String telephone;
+    private String address;
+    private String CUIT;
+    private Date birthday;
     private String email;
+    @ManyToOne(cascade = CascadeType.ALL,
+            targetEntity = Group.class)
+    private Set<Group> groups;
+    @ManyToOne(cascade = CascadeType.ALL,
+            targetEntity = Store.class)
+    private Set<Store> stores;
+    private Date created;
+    private Date removed;
+
+    public User() {
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCUIT() {
+        return CUIT;
+    }
+
+    public void setCUIT(String CUIT) {
+        this.CUIT = CUIT;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getRemoved() {
+        return removed;
+    }
+
+    public void setRemoved(Date removed) {
+        this.removed = removed;
+    }
 
 
     public long getId() {
@@ -46,14 +108,6 @@ public class User {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -62,4 +116,19 @@ public class User {
         this.email = email;
     }
 
+    public Set<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<Group> groups) {
+        this.groups = groups;
+    }
+
+    public Set<Store> getStores() {
+        return stores;
+    }
+
+    public void setStores(Set<Store> stores) {
+        this.stores = stores;
+    }
 }
