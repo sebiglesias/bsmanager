@@ -12,23 +12,28 @@ public class CategoryController {
     @Autowired
     CategoryRepository categoryRepository;
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void create(@RequestBody Category category) {
         categoryRepository.save(category);
     }
 
-    @RequestMapping(value = "/{id}")
+    @GetMapping(value = "/{id}")
     public Category read(@PathVariable long id) {
         return categoryRepository.findOne(id);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void update(@RequestBody Category category) {
         categoryRepository.save(category);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable long id) {
         categoryRepository.delete(id);
+    }
+
+    @GetMapping
+    public Iterable<Category> findAll(){
+        return categoryRepository.findAll();
     }
 }

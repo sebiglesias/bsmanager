@@ -26,6 +26,7 @@ public class User {
     @GeneratedValue(generator = "usersSequenceGenerator")
     private long id;
     private String name;
+    private String password;
     private String telephone;
     private String address;
     private String CUIT;
@@ -41,6 +42,14 @@ public class User {
     private Date removed;
 
     public User() {
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getTelephone() {
@@ -90,7 +99,6 @@ public class User {
     public void setRemoved(Date removed) {
         this.removed = removed;
     }
-
 
     public long getId() {
         return id;

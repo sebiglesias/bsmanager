@@ -12,23 +12,28 @@ public class StoreController {
     @Autowired
     StoreRepository storeRepository;
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void create(@RequestBody Store store) {
         storeRepository.save(store);
     }
 
-    @RequestMapping(value = "/{id}")
+    @GetMapping(value = "/{id}")
     public Store read(@PathVariable long id) {
         return storeRepository.findOne(id);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void update(@RequestBody Store store) {
         storeRepository.save(store);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable long id) {
         storeRepository.delete(id);
+    }
+
+    @GetMapping
+    public Iterable<Store> findAll(){
+        return storeRepository.findAll();
     }
 }

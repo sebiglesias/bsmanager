@@ -25,6 +25,14 @@ public class Group {
     @GeneratedValue(generator = "groupsSequenceGenerator")
     private long id;
     private String name;
+    private boolean isEmployee;
+    private boolean stores;
+    private boolean groups;
+    private boolean products;
+    private boolean users;
+    private boolean brands;
+    private boolean categories;
+    private boolean units;
 
     public Group(){
 
@@ -44,5 +52,69 @@ public class Group {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isStores() {
+        return stores;
+    }
+
+    public void setStores(boolean stores) {
+        this.stores = stores;
+    }
+
+    public boolean isGroups() {
+        return groups;
+    }
+
+    public void setGroups(boolean groups) {
+        this.groups = groups;
+    }
+
+    public boolean isProducts() {
+        return products;
+    }
+
+    public void setProducts(boolean products) {
+        this.products = products;
+    }
+
+    public boolean isUsers() {
+        return users;
+    }
+
+    public void setUsers(boolean users) {
+        this.users = users;
+    }
+
+    public boolean isBrands() {
+        return brands;
+    }
+
+    public void setBrands(boolean brands) {
+        this.brands = brands;
+    }
+
+    public boolean isCategories() {
+        return categories;
+    }
+
+    public void setCategories(boolean categories) {
+        this.categories = categories;
+    }
+
+    public boolean isUnits() {
+        return units;
+    }
+
+    public void setUnits(boolean units) {
+        this.units = units;
+    }
+
+    public boolean isEmployee() {
+        return isEmployee;
+    }
+
+    public void setEmployee(boolean employee) {
+        isEmployee = employee;
     }
 }

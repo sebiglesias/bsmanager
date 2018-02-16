@@ -25,8 +25,8 @@ public class Category {
     @Id
     @GeneratedValue(generator = "categoriesSequenceGenerator")
     private long id;
-    private String pluralName;
-    private String singularName;
+    private String plural_name;
+    private String singular_name;
 
     public Category(){}
 
@@ -38,19 +38,19 @@ public class Category {
         this.id = id;
     }
 
-    public String getPluralName() {
-        return pluralName;
+    public String getPlural_name() {
+        return plural_name;
     }
 
-    public void setPluralName(String pluralName) {
-        this.pluralName = pluralName;
+    public void setPlural_name(String plural_name) {
+        this.plural_name = plural_name;
     }
 
-    public String getSingularName() {
-        return singularName;
+    public String getSingular_name() {
+        return singular_name;
     }
 
-    public void setSingularName(String singularName) {
-        this.singularName = singularName;
+    public void setSingular_name(String singular_name) {
+        this.singular_name = singular_name;
     }
 }
