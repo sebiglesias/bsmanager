@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="categories")
+@Table(name="CATEGORIES")
 public class Category {
 
     @GenericGenerator(

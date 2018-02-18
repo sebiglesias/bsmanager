@@ -7,11 +7,12 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="products")
+@Table(name="PRODUCTS")
 public class Product {
     @GenericGenerator(
             name = "productsSequenceGenerator",
@@ -30,8 +31,8 @@ public class Product {
     private String code;
     @OneToOne
     private Brand brand;
-    @ManyToOne(targetEntity = Category.class)
-    private Set<Category> categories;
+    @OneToMany(targetEntity = Category.class)
+    private Set<Category> categories = new HashSet<Category>();
     private String model;
     private String series;
     private String infoUrl;
@@ -41,6 +42,12 @@ public class Product {
     private long costAfterTax;
     @OneToOne
     private Unit unit;
+    @ManyToMany
+    @JoinTable(name="INDIVIDUAL_PRODUCT",
+            joinColumns = @JoinColumn(name = "INDIVIDUAL_PRODUCT_ID", referencedColumnName = "PRODUCTS_ID"),
+            inverseJoinColumns = @JoinColumn(name="INDIVIDUAL_STORE_ID", referencedColumnName = "STORES_ID")
+    )
+    private Set<Store> store;
 
     public Product(){}
 

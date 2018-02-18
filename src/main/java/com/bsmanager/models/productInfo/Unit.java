@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="units")
+@Table(name="UNITS")
 public class Unit {
     @GenericGenerator(
             name = "unitsSequenceGenerator",

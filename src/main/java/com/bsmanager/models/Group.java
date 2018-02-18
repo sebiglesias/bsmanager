@@ -3,13 +3,11 @@ package com.bsmanager.models;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name= "groups")
+@Table(name= "GROUPS")
 public class Group {
     @GenericGenerator(
             name = "groupsSequenceGenerator",
@@ -24,6 +22,7 @@ public class Group {
     @Id
     @GeneratedValue(generator = "groupsSequenceGenerator")
     private long id;
+    @Column(unique = true)
     private String name;
     private boolean isEmployee;
     private boolean stores;
@@ -33,6 +32,9 @@ public class Group {
     private boolean brands;
     private boolean categories;
     private boolean units;
+    @ManyToOne
+    @JoinColumn(name="USERS_ID")
+    private User userid;
 
     public Group(){
 

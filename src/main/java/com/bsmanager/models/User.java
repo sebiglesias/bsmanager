@@ -6,10 +6,11 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 public class User {
 
     @GenericGenerator(
@@ -30,14 +31,16 @@ public class User {
     private String telephone;
     private String address;
     private String CUIT;
+    @Temporal(value=TemporalType.TIMESTAMP)
     private Date birthday;
+    @Column(unique=true)
     private String email;
-    @ManyToOne(cascade = CascadeType.ALL,
-            targetEntity = Group.class)
-    private Set<Group> groups;
-    @ManyToOne(cascade = CascadeType.ALL,
-            targetEntity = Store.class)
-    private Set<Store> stores;
+    @OneToMany(cascade = CascadeType.MERGE, targetEntity = Group.class)
+    @JoinColumn(name = "USERID")
+    private Set<Group> groups = new HashSet<>();
+    @OneToMany(cascade = CascadeType.MERGE, targetEntity = Store.class)
+    @JoinColumn(name = "GROUPS_USERID")
+    private Set<Store> stores = new HashSet<>();
     private Date created;
     private Date removed;
 

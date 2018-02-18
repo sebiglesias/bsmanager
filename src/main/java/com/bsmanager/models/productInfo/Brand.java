@@ -5,11 +5,12 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name= "brands")
+@Table(name= "BRANDS")
 public class Brand {
 
     @GenericGenerator(
@@ -28,7 +29,8 @@ public class Brand {
     private String name;
     private String infoURL;
     @ManyToOne(targetEntity = User.class)
-    private Set<User> suppliers;
+    @JoinColumn(name="USERS_ID")
+    private Set<User> suppliers = new HashSet<>();
     private String observations;
 
     public Brand(){}

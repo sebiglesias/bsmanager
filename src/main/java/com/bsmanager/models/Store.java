@@ -3,13 +3,12 @@ package com.bsmanager.models;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name= "stores")
+@Table(name= "STORES")
 public class Store {
     @GenericGenerator(
             name = "storesSequenceGenerator",
@@ -24,8 +23,18 @@ public class Store {
     @Id
     @GeneratedValue(generator = "storesSequenceGenerator")
     private long id;
+    @Column(unique=true)
     private String name;
     private String address;
+    @ManyToOne
+    @JoinColumn(name="USERS_ID")
+    private User userid;
+    @ManyToMany
+    @JoinTable(name="INDIVIDUAL_PRODUCT",
+            joinColumns = @JoinColumn(name="INDIVIDUAL_STORE_ID", referencedColumnName = "STORES_ID"),
+            inverseJoinColumns = @JoinColumn(name = "INDIVIDUAL_PRODUCT_ID", referencedColumnName = "PRODUCTS_ID")
+    )
+    private Set<Product> products = new HashSet<>();
 
     public Store(){
 

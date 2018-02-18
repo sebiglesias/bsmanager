@@ -31,4 +31,9 @@ public class ProductController {
     public void delete(@PathVariable long id) {
         productRepository.delete(id);
     }
+
+    @GetMapping
+    public Iterable<Product> findAll(){
+        return productRepository.findAll();
+    }
 }
