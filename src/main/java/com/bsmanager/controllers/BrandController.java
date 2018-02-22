@@ -12,23 +12,28 @@ public class BrandController {
     @Autowired
     BrandRepository brandRepository;
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void create(@RequestBody Brand brand) {
         brandRepository.save(brand);
     }
 
-    @RequestMapping(value = "/{id}")
+    @GetMapping(value = "/{id}")
     public Brand read(@PathVariable long id) {
         return brandRepository.findOne(id);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void update(@RequestBody Brand brand) {
         brandRepository.save(brand);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable long id) {
         brandRepository.delete(id);
+    }
+
+    @GetMapping
+    public Iterable<Brand> findAll(){
+        return brandRepository.findAll();
     }
 }

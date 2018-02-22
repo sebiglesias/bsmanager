@@ -2,15 +2,18 @@ package com.bsmanager.models;
 
 import com.bsmanager.models.productInfo.Brand;
 import com.bsmanager.models.productInfo.Category;
-import com.bsmanager.models.productInfo.Unit;
+import com.bsmanager.models.productInfo.Measure;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@product")
 @Entity
 @Table(name="PRODUCTS")
 public class Product {
@@ -29,10 +32,15 @@ public class Product {
     private long id;
     private String name;
     private String code;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "BRANDS_ID")
     private Brand brand;
-    @OneToMany(targetEntity = Category.class)
-    private Set<Category> categories = new HashSet<Category>();
+    @ManyToMany
+    @JoinTable(name="PRODUCT_CATEGORY",
+        joinColumns = @JoinColumn(name = "PRODUCT_CATEGORY_PRODUCT_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODUCT_CATEGORY_CATEGORY_ID", referencedColumnName = "ID")
+    )
+    private Set<Category> categories = new HashSet<>();
     private String model;
     private String series;
     private String infoUrl;
@@ -40,14 +48,16 @@ public class Product {
     private String longDescription;
     private long costBeforeTax;
     private long costAfterTax;
-    @OneToOne
-    private Unit unit;
+    @ManyToOne
+    @JoinColumn(name = "MEASURES_ID")
+    private Measure measure;
+    private int quantity;
     @ManyToMany
-    @JoinTable(name="INDIVIDUAL_PRODUCT",
-            joinColumns = @JoinColumn(name = "INDIVIDUAL_PRODUCT_ID", referencedColumnName = "PRODUCTS_ID"),
-            inverseJoinColumns = @JoinColumn(name="INDIVIDUAL_STORE_ID", referencedColumnName = "STORES_ID")
+    @JoinTable(name="PRODUCT_SALE",
+            joinColumns = @JoinColumn(name = "PRODUCT_SALE_PRODUCT_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODUCT_SALE_SALE_ID", referencedColumnName = "ID")
     )
-    private Set<Store> store;
+    private Set<Sale> sales;
 
     public Product(){}
 
@@ -71,7 +81,7 @@ public class Product {
         return code;
     }
 
-    public void setCodes(String code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
@@ -147,11 +157,27 @@ public class Product {
         this.costAfterTax = costAfterTax;
     }
 
-    public Unit getUnit() {
-        return unit;
+    public Measure getMeasure() {
+        return measure;
     }
 
-    public void setUnit(Unit unit) {
-        this.unit = unit;
+    public void setMeasure(Measure measure) {
+        this.measure = measure;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Set<Sale> getSales() {
+        return sales;
+    }
+
+    public void setSales(Set<Sale> sales) {
+        this.sales = sales;
     }
 }

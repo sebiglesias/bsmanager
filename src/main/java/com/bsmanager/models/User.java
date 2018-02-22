@@ -35,14 +35,7 @@ public class User {
     private Date birthday;
     @Column(unique=true)
     private String email;
-    @OneToMany(cascade = CascadeType.MERGE, targetEntity = Group.class)
-    @JoinColumn(name = "USERID")
-    private Set<Group> groups = new HashSet<>();
-    @OneToMany(cascade = CascadeType.MERGE, targetEntity = Store.class)
-    @JoinColumn(name = "GROUPS_USERID")
-    private Set<Store> stores = new HashSet<>();
-    private Date created;
-    private Date removed;
+    private boolean admin;
 
     public User() {
     }
@@ -87,22 +80,6 @@ public class User {
         this.birthday = birthday;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getRemoved() {
-        return removed;
-    }
-
-    public void setRemoved(Date removed) {
-        this.removed = removed;
-    }
-
     public long getId() {
         return id;
     }
@@ -127,19 +104,11 @@ public class User {
         this.email = email;
     }
 
-    public Set<Group> getGroups() {
-        return groups;
+    public boolean isAdmin() {
+        return admin;
     }
 
-    public void setGroups(Set<Group> groups) {
-        this.groups = groups;
-    }
-
-    public Set<Store> getStores() {
-        return stores;
-    }
-
-    public void setStores(Set<Store> stores) {
-        this.stores = stores;
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

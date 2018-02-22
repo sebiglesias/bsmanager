@@ -1,13 +1,16 @@
 package com.bsmanager.models.productInfo;
 
+import com.bsmanager.models.Product;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@category")
 @Entity
 @Table(name="CATEGORIES")
 public class Category {
@@ -27,6 +30,12 @@ public class Category {
     private long id;
     private String plural_name;
     private String singular_name;
+    @ManyToMany
+    @JoinTable(name="PRODUCT_CATEGORY",
+            joinColumns = @JoinColumn(name = "PRODUCT_CATEGORY_CATEGORY_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODUCT_CATEGORY_PRODUCT_ID", referencedColumnName = "ID")
+    )
+    private Set<Product> products = new HashSet<>();
 
     public Category(){}
 
@@ -52,5 +61,13 @@ public class Category {
 
     public void setSingular_name(String singular_name) {
         this.singular_name = singular_name;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 }

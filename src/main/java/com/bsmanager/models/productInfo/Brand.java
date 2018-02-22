@@ -1,5 +1,6 @@
 package com.bsmanager.models.productInfo;
 
+import com.bsmanager.models.Product;
 import com.bsmanager.models.User;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -28,10 +29,9 @@ public class Brand {
     private long id;
     private String name;
     private String infoURL;
-    @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name="USERS_ID")
-    private Set<User> suppliers = new HashSet<>();
     private String observations;
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
+    private Set<Product> products;
 
     public Brand(){}
 
@@ -57,14 +57,6 @@ public class Brand {
 
     public void setInfoURL(String infoURL) {
         this.infoURL = infoURL;
-    }
-
-    public Set<User> getSuppliers() {
-        return suppliers;
-    }
-
-    public void setSuppliers(Set<User> suppliers) {
-        this.suppliers = suppliers;
     }
 
     public String getObservations() {
