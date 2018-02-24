@@ -1,6 +1,5 @@
-package com.bsmanager.models.productInfo;
+package com.bsmanager.models.products;
 
-import com.bsmanager.models.Product;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -30,6 +29,7 @@ public class Category {
     private long id;
     private String plural_name;
     private String singular_name;
+    @JsonBackReference
     @ManyToMany
     @JoinTable(name="PRODUCT_CATEGORY",
             joinColumns = @JoinColumn(name = "PRODUCT_CATEGORY_CATEGORY_ID", referencedColumnName = "ID"),

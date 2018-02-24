@@ -1,11 +1,7 @@
-package com.bsmanager.models;
+package com.bsmanager.models.products;
 
-import com.bsmanager.models.productInfo.Brand;
-import com.bsmanager.models.productInfo.Category;
-import com.bsmanager.models.productInfo.Measure;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.bsmanager.models.sales.OrderDetail;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -52,12 +48,6 @@ public class Product {
     @JoinColumn(name = "MEASURES_ID")
     private Measure measure;
     private int quantity;
-    @ManyToMany
-    @JoinTable(name="PRODUCT_SALE",
-            joinColumns = @JoinColumn(name = "PRODUCT_SALE_PRODUCT_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "PRODUCT_SALE_SALE_ID", referencedColumnName = "ID")
-    )
-    private Set<Sale> sales;
 
     public Product(){}
 
@@ -173,11 +163,4 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Set<Sale> getSales() {
-        return sales;
-    }
-
-    public void setSales(Set<Sale> sales) {
-        this.sales = sales;
-    }
 }

@@ -1,6 +1,6 @@
-package com.bsmanager.models.productInfo;
+package com.bsmanager.models.products;
 
-import com.bsmanager.models.Product;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -26,6 +26,7 @@ public class Measure {
     private long id;
     private String name;
     private String abbreviation;
+    @JsonBackReference
     @OneToMany(mappedBy = "measure", cascade = CascadeType.ALL)
     private Set<Product> products;
 

@@ -1,6 +1,6 @@
 package com.bsmanager.controllers;
 
-import com.bsmanager.models.productInfo.Brand;
+import com.bsmanager.models.products.Brand;
 import com.bsmanager.repositories.BrandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

@@ -1,30 +1,29 @@
-package com.bsmanager.models;
+package com.bsmanager.models.sales;
 
+import com.bsmanager.models.users.User;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@sales")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@orders")
 @Entity
-@Table(name="SALES")
-public class Sale {
+@Table(name="ORDERS")
+public class Order {
     @GenericGenerator(
-            name = "salesSequenceGenerator",
+            name = "ordersSequenceGenerator",
             strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
             parameters = {
-                    @Parameter(name = "sequence_name", value = "salesSequence"),
+                    @Parameter(name = "sequence_name", value = "ordersSequence"),
                     @Parameter(name = "initial_value", value = "1"),
                     @Parameter(name = "increment_size", value = "1")
             }
     )
 
     @Id
-    @GeneratedValue(generator = "salesSequenceGenerator")
+    @GeneratedValue(generator = "ordersSequenceGenerator")
     private long id;
     private long price;
     @ManyToOne
@@ -32,15 +31,8 @@ public class Sale {
     private User user;
     @Temporal(value=TemporalType.TIMESTAMP)
     private Date date;
-    @ManyToMany
-    @JoinTable(name="PRODUCT_SALE",
-            joinColumns = @JoinColumn(name = "PRODUCT_SALE_SALE_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "PRODUCT_SALE_PRODUCT_ID", referencedColumnName = "ID")
-    )
-    private Set<Product> products;
-    private String details;
 
-    public Sale(){}
+    public Order(){}
 
     public long getId() {
         return id;
@@ -72,21 +64,5 @@ public class Sale {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
     }
 }

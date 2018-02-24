@@ -1,13 +1,10 @@
-package com.bsmanager.models.productInfo;
+package com.bsmanager.models.products;
 
-import com.bsmanager.models.Product;
-import com.bsmanager.models.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -30,6 +27,7 @@ public class Brand {
     private String name;
     private String infoURL;
     private String observations;
+    @JsonBackReference
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
     private Set<Product> products;
 

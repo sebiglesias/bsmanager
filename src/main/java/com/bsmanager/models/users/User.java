@@ -1,4 +1,4 @@
-package com.bsmanager.models;
+package com.bsmanager.models.users;
 
 import javax.persistence.*;
 

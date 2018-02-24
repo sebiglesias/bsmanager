@@ -1,6 +1,6 @@
 package com.bsmanager.controllers;
 
-import com.bsmanager.models.User;
+import com.bsmanager.models.users.User;
 import com.bsmanager.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
