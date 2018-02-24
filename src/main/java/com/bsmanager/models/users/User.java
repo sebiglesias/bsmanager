@@ -30,7 +30,7 @@ public class User {
     private String password;
     private String telephone;
     private String address;
-    private String CUIT;
+    private String taxNum;
     @Temporal(value=TemporalType.TIMESTAMP)
     private Date birthday;
     @Column(unique=true)
@@ -64,12 +64,12 @@ public class User {
         this.address = address;
     }
 
-    public String getCUIT() {
-        return CUIT;
+    public String getTaxNum() {
+        return taxNum;
     }
 
-    public void setCUIT(String CUIT) {
-        this.CUIT = CUIT;
+    public void setTaxNum(String taxNum) {
+        this.taxNum = taxNum;
     }
 
     public Date getBirthday() {
