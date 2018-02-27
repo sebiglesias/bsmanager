@@ -25,7 +25,7 @@ public class Brand {
     @GeneratedValue(generator = "brandsSequenceGenerator")
     private long id;
     private String name;
-    private String infoURL;
+    private String infoUrl;
     private String observations;
     @JsonBackReference
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
@@ -49,12 +49,12 @@ public class Brand {
         this.name = name;
     }
 
-    public String getInfoURL() {
-        return infoURL;
+    public String getInfoUrl() {
+        return infoUrl;
     }
 
-    public void setInfoURL(String infoURL) {
-        this.infoURL = infoURL;
+    public void setInfoUrl(String infoUrl) {
+        this.infoUrl = infoUrl;
     }
 
     public String getObservations() {

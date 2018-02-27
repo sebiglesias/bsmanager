@@ -42,8 +42,8 @@ public class Product {
     private String infoUrl;
     private String shortDescription;
     private String longDescription;
-    private long costBeforeTax;
-    private long costAfterTax;
+    private long cost;
+    private long price;
     @ManyToOne
     @JoinColumn(name = "MEASURES_ID")
     private Measure measure;
@@ -131,20 +131,20 @@ public class Product {
         this.longDescription = longDescription;
     }
 
-    public long getCostBeforeTax() {
-        return costBeforeTax;
+    public long getCost() {
+        return cost;
     }
 
-    public void setCostBeforeTax(long costBeforeTax) {
-        this.costBeforeTax = costBeforeTax;
+    public void setCost(long cost) {
+        this.cost = cost;
     }
 
-    public long getCostAfterTax() {
-        return costAfterTax;
+    public long getPrice() {
+        return price;
     }
 
-    public void setCostAfterTax(long costAfterTax) {
-        this.costAfterTax = costAfterTax;
+    public void setPrice(long price) {
+        this.price = price;
     }
 
     public Measure getMeasure() {

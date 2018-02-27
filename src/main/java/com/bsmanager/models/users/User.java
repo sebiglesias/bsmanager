@@ -26,7 +26,8 @@ public class User {
     @Id
     @GeneratedValue(generator = "usersSequenceGenerator")
     private long id;
-    private String name;
+    private String firstname;
+    private String lastname;
     private String password;
     private String telephone;
     private String address;
@@ -88,14 +89,6 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -110,5 +103,21 @@ public class User {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 }

@@ -1,6 +1,5 @@
 package com.bsmanager.models.sales;
 
-import com.bsmanager.models.users.User;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
@@ -26,9 +25,11 @@ public class Order {
     @GeneratedValue(generator = "ordersSequenceGenerator")
     private long id;
     private long price;
-    @ManyToOne
-    @JoinColumn(name="USERS_ID")
-    private User user;
+    private boolean sale;
+    private String employee;
+    private String external;
+    private String payment;
+    private int items;
     @Temporal(value=TemporalType.TIMESTAMP)
     private Date date;
 
@@ -50,19 +51,51 @@ public class Order {
         this.price = price;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Date getDate() {
         return date;
     }
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public int getItems() {
+        return items;
+    }
+
+    public void setItems(int items) {
+        this.items = items;
+    }
+
+    public boolean isSale() {
+        return sale;
+    }
+
+    public void setSale(boolean sale) {
+        this.sale = sale;
+    }
+
+    public String getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(String employee) {
+        this.employee = employee;
+    }
+
+    public String getExternal() {
+        return external;
+    }
+
+    public void setExternal(String external) {
+        this.external = external;
     }
 }

@@ -13,8 +13,8 @@ public class OrderController {
     OrderRepository orderRepository;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void create(@RequestBody Order order) {
-        orderRepository.save(order);
+    public Order create(@RequestBody Order order) {
+        return orderRepository.save(order);
     }
 
     @GetMapping(value = "/{id}")

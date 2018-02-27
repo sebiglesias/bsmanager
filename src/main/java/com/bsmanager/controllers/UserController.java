@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/user")
@@ -30,8 +31,8 @@ public class UserController {
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@RequestBody User user) {
-        userRepository.save(user);
+    public User update(@RequestBody User user) {
+        return userRepository.save(user);
     }
 
     @DeleteMapping(value = "/{id}")

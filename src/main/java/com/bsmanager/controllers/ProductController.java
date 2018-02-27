@@ -23,8 +23,8 @@ public class ProductController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@RequestBody Product product) {
-        productRepository.save(product);
+    public Product update(@RequestBody Product product) {
+        return productRepository.save(product);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
