@@ -67,4 +67,12 @@ public class OrderDetail {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }

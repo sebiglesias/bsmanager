@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/orderDetail")
 public class OrderDetailController {
@@ -35,5 +37,10 @@ public class OrderDetailController {
     @GetMapping
     public Iterable<OrderDetail> findAll(){
         return orderDetailRepository.findAll();
+    }
+
+    @GetMapping(value = "/order/{id}")
+    public List<Object> getOrderOrderDetail(@PathVariable long id){
+        return orderDetailRepository.getOrderOrderDetail(id);
     }
 }

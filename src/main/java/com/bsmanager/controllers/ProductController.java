@@ -36,4 +36,9 @@ public class ProductController {
     public Iterable<Product> findAll(){
         return productRepository.findAll();
     }
+
+    @GetMapping(value = "/code/{code}")
+    public Product readCode(@PathVariable String code) {
+        return productRepository.findByCode(code);
+    }
 }
